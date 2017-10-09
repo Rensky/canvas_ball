@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>彈力小球球</title>
+</head>
+
+<body>
+
+    <canvas id="cv" width="500" height="500"></canvas>
+
+    <script>
+        window.onload = function() {
+
+            // Build Canvas
+            var canvas = document.getElementById('cv');
+            var context = canvas.getContext("2d");
+
+            // 設置畫板為黑色的
+            context.fillStyle = "black";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 初始的位置點
+            var posX = 10, // 球球的 x軸 初始位置
+                posY = canvas.height / 2; // 球球的 y 軸初始位置
+
+            // 移動速度啦
+            var vx = 10, // x 軸的累加速度
+                vy = -20, // y 軸的累加速度，為什麼是負數？？因為起始讓他有上拋的感覺
+                gravity = 1; // 重力參數之後會隨著Y軸累加，所以看起來有物理的現象
+
+            var animate_start = setInterval(function() { // 就讓他一直執行吧
+
+                // 每次執行一次就將畫面畫板重新畫一次，可以註解掉就會發現到可以看到球的移動路徑
+                context.fillStyle = "black";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                posY += vy; // y 軸每次增加 vy 參數所以每次球的 y 軸都不一樣囉
+                posX += vx; // x 軸每次增加 vx 參數所以每次球的 x 軸都不一樣囉
+
+
+                // 以下是設置彈跳的高度
+                // posY 是球的Y軸目前座標位置
+                if (posY > canvas.height - 20) { // 如果球球高度超過了 canvas 畫布的高度，則開始往下遞減
+                    vy *= -0.9; // 每次往下遞減 0.9
+                    vx *= 0.9; // x 軸也跟著遞減，這樣才有越跳越慢的感覺
+                    posY = canvas.height * 1 - 20; // 設 y 軸的底端為反彈點
+                }
+
+                /** 以下是設置彈跳的 x 距離 **/
+                if (posX > canvas.width - 20) { // 假設球球的位置超過了最大寬度的話
+                    vx *= -0.9; // 使用負數讓 x 軸往回遞減
+                    posX = canvas.width - 20; // 設 x 軸右底端為反彈點
+                }
+                if (posX < 20) {
+                    vx = Math.abs(vx) * 0.9; // 二次反彈，將數值絕對值轉為正的
+                    posX = 20; // 設 x 軸左底端為反彈點
+                }
+
+                vy += gravity; // y 的掉落速度每次再加上重力 gravity 素質，會產生越掉越低
+
+                /** 以下就是畫圓形囉 **/
+                context.beginPath();
+                context.fillStyle = "white";
+                context.arc(posX, posY, 20, 0, Math.PI * 2, true);
+                context.closePath();
+                context.fill();
+
+            }, 20);
+
+
+        }
+    </script>
+
+</body>
+
+</html>
