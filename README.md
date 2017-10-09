@@ -1,7 +1,9 @@
-## Canvas 彈力小球球
+## Canvas 彈力小球球 ##
 
-### 沒什麼好說的就是練習 Canvas 的動態
+### 沒什麼好說的就是練習 Canvas 的動態 ###
 ------
+
+[範例在這裡喔](http://rensky.rocks/canvas/particles.html)
 
 * canvas 基本的繪圖我就不多說囉～
 * 主要重點放在球球的 Animate
