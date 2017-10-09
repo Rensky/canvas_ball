@@ -1,2 +1,2 @@
-# canvas_ball
+# Canvas 彈力小球球
 會彈力的小球球喔！！
