@@ -15,7 +15,6 @@ if (posY > canvas.height - 20) {
     posY = canvas.height * 1 - 20; 
 }
 
-/** 以下是設置彈跳的 x 距離 **/
 if (posX > canvas.width - 20) {
     vx *= -0.9; 
     posX = canvas.width - 20; 
