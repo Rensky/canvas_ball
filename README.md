@@ -8,20 +8,21 @@
 * 註解裡面寫的超級霹靂清楚了～
 * 以下會是比較困難點的地方，我就先列出來
 ``` js
-if (posY > canvas.height - 20) { // 如果球球高度超過了 canvas 畫布的高度，則開始往下遞減
-    vy *= -0.9; // 每次往下遞減 0.9
-    vx *= 0.9; // x 軸也跟著遞減，這樣才有越跳越慢的感覺
-    posY = canvas.height * 1 - 20; // 設 y 軸的底端為反彈點
+/** 以下分別是計算球碰到壁該反彈的動作 **/
+if (posY > canvas.height - 20) { 
+    vy *= -0.9;
+    vx *= 0.9; 
+    posY = canvas.height * 1 - 20; 
 }
 
 /** 以下是設置彈跳的 x 距離 **/
-if (posX > canvas.width - 20) { // 假設球球的位置超過了最大寬度的話
-    vx *= -0.9; // 使用負數讓 x 軸往回遞減
-    posX = canvas.width - 20; // 設 x 軸右底端為反彈點
+if (posX > canvas.width - 20) {
+    vx *= -0.9; 
+    posX = canvas.width - 20; 
 }
 if (posX < 20) {
-    vx = Math.abs(vx) * 0.9; // 二次反彈，將數值絕對值轉為正的
-    posX = 20; // 設 x 軸左底端為反彈點
+    vx = Math.abs(vx) * 0.9; 
+    posX = 20; 
 }
 ```
 * 另外兩個重點
